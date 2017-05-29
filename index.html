@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Crystal Collector</title>
+
+
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+  	<link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+  	<!-- Added link to the jQuery Library -->
+    <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+
+</head>
+<body>
+<header id="masthead">
+    <div class="container_header">
+      <a href="index.html" id="logo">Crystal Collectors!</a>
+    </div>
+  </header>
+  
+   <h1>Crystal Collectors Game</h1>
+
+  
+      <div class="container_main">
+     
+      	<div class="inside_container">
+      		<p>You will be given a random number at the start of the game</p>
+      		<p>There are four crystals below. By clicking on a crystal, you will add a specific amount of points to your total score.</p>
+      		<p>You win the game by matching your total score to the random number.</p>
+      		<p>The value of each crystal is hidden from you until you click on it.</p>
+      		<p>Each time when the game starts, the value of each crystal will change</p>
+      	</div>
+      	
+      	<div class="random_number">
+
+      		<div id="random_number_to_match" value="random_number" onclick="display_random_number()"></div>
+
+      	</div>
+      	<div class="wins_losses">
+      		<div id="message"></div>
+      		<div id="wins" value="Wins">Wins:</div>
+      		<div id="losses" value="Losses">Losses:</div>
+      	</div>
+      	<div class="inside_images">
+      		<button id="ruby_btn" value = "ruby"><img id="ruby" class = "small_image" ></img></button> 
+      		<button id="diamond_btn" value = "diamond"><img id="diamond" class = "small_image"></img></button>
+      		<button id="amathyst_btn" value = "amathyst"><img id="amathyst" class = "small_image" ></img></button>
+      		<button id="enerald_btn" value = "emerald"><img id="emerald" class = "small_image" ></img></button>
+      	</div>
+      	<div id="total_score" class="total_score" value="total_score">Total Score</div>
+
+      	<div id="crystal_value" class="crystal_value" value="crystal_value">Crystal Value</div>
+
+      	
+      </div> 
+     
+     
+ 
+
+</body>
+<!-- Javascript file -->
+<script src="assets/javascript/game.js"></script>
+
+</html>
