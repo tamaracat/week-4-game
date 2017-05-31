@@ -7,6 +7,7 @@
 
 	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
   	<link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
   	<!-- Added link to the jQuery Library -->
     <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
 
@@ -22,6 +23,8 @@
 
   
       <div class="container_main">
+
+       
      
       	<div class="inside_container">
       		<p>You will be given a random number at the start of the game</p>
@@ -30,24 +33,29 @@
       		<p>The value of each crystal is hidden from you until you click on it.</p>
       		<p>Each time when the game starts, the value of each crystal will change</p>
       	</div>
-      	
-      	<div class="random_number">
+     	
+     	<div class="row">
+       		<div class="col-lg-2">
+      			<div class="random_number">
 
-      		<div id="random_number_to_match" value="random_number" onclick="display_random_number()"></div>
+      				<div id="random_number_to_match" value="random_number" onclick="display_random_number()"></div>
 
-      	</div>
-      	<div class="wins_losses">
-      		<div id="message"></div>
-      		<div id="wins" value="Wins">Wins:</div>
-      		<div id="losses" value="Losses">Losses:</div>
+      			</div>
+      		</div>
+      	<div class="col-lg-6">
+      		<div class="wins_losses">
+      			<div id="message"></div>
+      			<div id="wins" value="Wins">Wins:</div>
+      			<div id="losses" value="Losses">Losses:</div>
+      		</div>
       	</div>
       	<div class="inside_images">
-      		<button id="ruby_btn" value = "ruby"><img id="ruby" class = "small_image" ></img></button> 
-      		<button id="diamond_btn" value = "diamond"><img id="diamond" class = "small_image"></img></button>
-      		<button id="amathyst_btn" value = "amathyst"><img id="amathyst" class = "small_image" ></img></button>
-      		<button id="enerald_btn" value = "emerald"><img id="emerald" class = "small_image" ></img></button>
+      		<button id="ruby"><img id="ruby_img" class = "small_image" ></img></button> 
+      		<button id="diamond"><img id="diamond_img" class = "small_image"></img></button>
+      		<button id="amathyst"><img id="amathyst_img" class = "small_image" ></img></button>
+      		<button id="emerald"><img id="emerald_img" class = "small_image" ></img></button>
       	</div>
-      	<div id="total_score" class="total_score" value="total_score">Total Score</div>
+      	<div id="total_score" class="total_score" value="score">Total Score</div>
 
       	<div id="crystal_value" class="crystal_value" value="crystal_value">Crystal Value</div>
 

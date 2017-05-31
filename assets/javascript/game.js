@@ -1,25 +1,86 @@
 
+window.onload = function() {
 
-var CrystalImageArray = ['assets/images/amathyst.jpeg' , 'assets/images/diamond.jpg' , 
-'assets/images/emerald.jpeg' ,'assets/images/ruby.jpeg']
+	document.getElementById("ruby_img").src=CrystalObjects[0].image;
+	document.getElementById("diamond_img").src=CrystalObjects[1].image;
+	document.getElementById("amathyst_img").src=CrystalObjects[2].image;
+	document.getElementById("emerald_img").src=CrystalObjects[3].image;
 
-var value_array = ["ruby", "diamond", "amathyst", "emerald"]
+  //  Click events are done for us:
+  $("#amathyst").click(crystal.generate_random_and_sum);
+  $("#ruby").click(crystal.generate_random_and_sum);
+  $("#diamond").click(crystal.generate_random_and_sum);
+  $("#emerald").click(crystal.generate_random_and_sum);
 
-var crystal_object_ruby = {type:"ruby", value:0};
-var crystal_object_diamond = {type:"diamond", value:0};
-var crystal_object_amathyst = {type:"amathyst", value:0};
-var crystal_object_emerald = {type:"emerald", value:0};
+  $("#message").html("New game!");
+ 
+};
 
-crystal_object_array = [crystal_object_ruby, crystal_object_diamond, crystal_object_amathyst, crystal_object_emerald]
+var CrystalObjects = [
+  {
+    name: "ruby",
+    image: "assets/images/ruby.jpeg",
+    value: 0
+  },
+  {
+    name: "diamond",
+    image: "assets/images/diamond.jpg",
+    value: 0
+  },
+  {
+    name: "amathyst",
+    image: "assets/images/amathyst.jpeg",
+    value: 0
+  },
+  {
+    name: "emerald",
+    image: "assets/images/emerald.jpeg",
+    value: 0
+  }
+  ];
+
 
 var score_global=0;
 var win=0;
 var lose=0;
 
-document.getElementById("ruby").src=CrystalImageArray[3];
-document.getElementById("diamond").src=CrystalImageArray[1];
-document.getElementById("amathyst").src=CrystalImageArray[0];
-document.getElementById("emerald").src=CrystalImageArray[2];
+var crystal = {
+
+
+	generate_random_and_sum: function() {
+
+		current_id = $(this).attr("id");
+
+
+		console.log(current_id);
+
+		for (var i = 0; i < 4; i++) {
+	
+			if (CrystalObjects[i].name === current_id){
+
+				if(CrystalObjects[i].value === 0){
+
+					$("#message").html("New game!");
+
+					console.log(CrystalObjects[i].value);
+
+					CrystalObjects[i].value = generate_random_number_crystal();
+
+					console.log(CrystalObjects[i].value);
+
+					$("#crystal_value").html(CrystalObjects[i].value);
+				}
+				else{
+
+					total_score(CrystalObjects[i].value);
+					$("#crystal_value").html(CrystalObjects[i].value);
+				}
+				
+			} 
+		}
+		
+},
+};
 
 function generate_random_number(){
 
@@ -36,49 +97,13 @@ function generate_random_number_crystal(){
 
 	return random_number;
 }
-function display_number_generate_sum(global_value){
-
-	var crystal_value = "Value:"
-	var random_number_string = "";
-	var random_number = generate_random_number_crystal();
-	
-
-	for (var i = 0; i < value_array.length; i++) {
-		// console.log(value_array[i]);
-		if(value_array[i] === global_value){
-			
-			if( crystal_object_array[i].value === 0){
-				crystal_object_array[i].value = random_number;
-
-				random_number_string = crystal_object_array[i].value.toString();
-				crystal_value_innerHTML = crystal_value + random_number_string;
-
-				// get id and write to inner HTML
-				var element = document.getElementById("crystal_value");
-				element.innerHTML = crystal_value_innerHTML;
-				// sum the values
-				total_score(crystal_object_array[i].value);
-				
-			}
-			else{
-				random_number_string = crystal_object_array[i].value.toString();
-				// console.log(crystal_object_array[i].value);
-				crystal_value_innerHTML = crystal_value + random_number_string;
-				var element = document.getElementById("crystal_value");
-				element.innerHTML = crystal_value_innerHTML;
-				// sum the values
-				total_score(crystal_object_array[i].value);
-			}
-		}	
-	}
-  
-}
 
 function display_random_number(){
 
 	var random_number = generate_random_number();
-	var element = document.getElementById("random_number_to_match");
-	element.innerHTML = random_number;
+
+	$("#random_number_to_match").html(random_number);
+
 	return random_number;
   
 }
@@ -88,9 +113,13 @@ function total_score(crystal_value){
 	var win_string="Wins:"
 	var lose_string="Losses:"
 
+	console.log(crystal_value)
+
+	//var total_score = $(this).attr("score");
+
 	score_global = score_global + crystal_value;
-	var element = document.getElementById("total_score");
-	element.innerHTML = score_global;
+	
+	$("#total_score").html(score_global);
 
 	console.log(score_global);
 
@@ -100,8 +129,8 @@ function total_score(crystal_value){
 		lose_string = lose_string + lose.toString();
 
 		// clear crystal values
-		for(var j=0; j<value_array.length; j++){
-			crystal_object_array[j].value=0;
+		for(var j=0; j<4; j++){
+			CrystalObjects[j].value=0;
 		}
 		
 		// var element = document.getElementById("total_score");
@@ -116,8 +145,8 @@ function total_score(crystal_value){
 		win_string=win_string + win.toString();
 
 		// clear crystal values
-		for(var j=0; j<value_array.length; j++){
-			crystal_object_array[j].value=0;
+		for(var j=0; j<4; j++){
+			CrystalObjects[j].value=0;
 		}
 		$("#wins").html(win_string);
 		$("#message").html("You <b>win!</b>");
@@ -128,31 +157,4 @@ function total_score(crystal_value){
 
 
 var random_number_compare = display_random_number();
-
-$(document).ready(function(){
-	var btn_val="";
-
-	$("#enerald_btn").click(function(){
-    	btn_val = $("#enerald_btn").val();
-    	console.log(btn_val);
-    	display_number_generate_sum(btn_val);
-	});
-	$("#ruby_btn").click(function(){
-    	btn_val = $("#ruby_btn").val();
-    	console.log(btn_val);
-    	display_number_generate_sum(btn_val);
-	});
-	$("#diamond_btn").click(function(){
-    	btn_val = $("#diamond_btn").val();
-    	console.log(btn_val);
-    	display_number_generate_sum(btn_val);
-	});
-	$("#amathyst_btn").click(function(){
-    	btn_val = $("#amathyst_btn").val();
-    	console.log(btn_val);
-    	display_number_generate_sum(btn_val);
-	});
-});
-
-
 
